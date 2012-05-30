@@ -39,10 +39,10 @@ source ../../../common/generate-factory-images-common.sh
 
 PRODUCT=sojuk
 DEVICE=crespo
-BUILD=189904
-VERSION=grk39f
+BUILD=299849
+VERSION=imm76d
 RADIOSRC=radio.kr.img
-BOOTLOADER=i9020xxka3
+BOOTLOADER=i9020xxkl1
 RADIO=m200krkc1
 
 source ../../../common/generate-factory-images-common.sh
