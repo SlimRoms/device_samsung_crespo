@@ -16,6 +16,7 @@
 
 # 189904 = GRK39F
 # 299849 = IMM76D
+# 367151 = IMM76M
 
 PRODUCT=soju
 DEVICE=crespo
@@ -29,8 +30,8 @@ source ../../../common/generate-factory-images-common.sh
 
 PRODUCT=sojua
 DEVICE=crespo
-BUILD=299849
-VERSION=imm76d
+BUILD=367151
+VERSION=imm76m
 RADIOSRC=radio.uc.img
 BOOTLOADER=i9020xxkl1
 RADIO=i9020uckj1
