@@ -37,12 +37,13 @@
 # 257829 = IMM30B
 # 262866 = IMM30D
 # 299849 = IMM76D
+# 367151 = IMM76M
 # end ics-mr1
 BRANCH=ics-mr1
 if test $BRANCH=ics-mr1
 then
-  ZIP=soju-ota-299849.zip
-  BUILD=imm76d
+  ZIP=soju-ota-367151.zip
+  BUILD=imm76m
 fi # ics-mr1
 ROOTDEVICE=crespo
 DEVICE=crespo
