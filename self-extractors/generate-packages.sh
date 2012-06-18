@@ -39,17 +39,25 @@
 # 299849 = IMM76D
 # 367151 = IMM76M
 # end ics-mr1
-BRANCH=ics-mr1
+# start jb-dev
+# 385121 = JRN79
+# end jb-dev
+BRANCH=jb-dev
 if test $BRANCH=ics-mr1
 then
   ZIP=soju-ota-367151.zip
   BUILD=imm76m
 fi # ics-mr1
+if test $BRANCH=jb-dev
+then
+  ZIP=soju-ota-385121.zip
+  BUILD=jrn79
+fi # jb-dev
 ROOTDEVICE=crespo
 DEVICE=crespo
 MANUFACTURER=samsung
 
-for COMPANY in akm broadcom cypress imgtec nxp samsung
+for COMPANY in akm broadcom cypress imgtec nxp samsung widevine
 do
   echo Processing files from $COMPANY
   rm -rf tmp
@@ -100,6 +108,11 @@ do
     TO_EXTRACT="\
             system/lib/libsecril-client.so \
             system/vendor/lib/libsec-ril.so \
+            "
+    ;;
+  widevine)
+    TO_EXTRACT="\
+            system/lib/libdrmdecrypt.so \
             "
     ;;
   esac
