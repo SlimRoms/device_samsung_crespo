@@ -17,33 +17,26 @@
 # 189904 = GRK39F
 # 299849 = IMM76D
 # 367151 = IMM76M
+# 397360 = JRO02C
 
+source ../../../common/clear-factory-images-variables.sh
 PRODUCT=soju
 DEVICE=crespo
-BUILD=299849
-VERSION=imm76d
+BUILD=397360
+VERSION=jro02c
+SRCPREFIX=signed-
 RADIOSRC=radio.xx.img
-BOOTLOADER=i9020xxkl1
+BOOTLOADER=i9020xxlc2
 RADIO=i9020xxki1
-
 source ../../../common/generate-factory-images-common.sh
 
+source ../../../common/clear-factory-images-variables.sh
 PRODUCT=sojua
 DEVICE=crespo
-BUILD=367151
-VERSION=imm76m
+BUILD=397360
+VERSION=jro02c
+SRCPREFIX=signed-
 RADIOSRC=radio.uc.img
-BOOTLOADER=i9020xxkl1
+BOOTLOADER=i9020xxlc2
 RADIO=i9020uckj1
-
-source ../../../common/generate-factory-images-common.sh
-
-PRODUCT=sojuk
-DEVICE=crespo
-BUILD=299849
-VERSION=imm76d
-RADIOSRC=radio.kr.img
-BOOTLOADER=i9020xxkl1
-RADIO=m200krkc1
-
 source ../../../common/generate-factory-images-common.sh
