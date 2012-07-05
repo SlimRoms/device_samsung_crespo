@@ -18,12 +18,13 @@
 # 299849 = IMM76D
 # 367151 = IMM76M
 # 397360 = JRO02C
+# 398337 = JRO03C
 
 source ../../../common/clear-factory-images-variables.sh
 PRODUCT=soju
 DEVICE=crespo
-BUILD=397360
-VERSION=jro02c
+BUILD=398337
+VERSION=jro03c
 SRCPREFIX=signed-
 RADIOSRC=radio.xx.img
 BOOTLOADER=i9020xxlc2
@@ -33,8 +34,8 @@ source ../../../common/generate-factory-images-common.sh
 source ../../../common/clear-factory-images-variables.sh
 PRODUCT=sojua
 DEVICE=crespo
-BUILD=397360
-VERSION=jro02c
+BUILD=398337
+VERSION=jro03c
 SRCPREFIX=signed-
 RADIOSRC=radio.uc.img
 BOOTLOADER=i9020xxlc2
