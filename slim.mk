@@ -12,7 +12,7 @@ $(call inherit-product, vendor/slim/config/common_nexus.mk)
 #copy kernel and modules
 PRODUCT_COPY_FILES += \
 	device/samsung/crespo/prebuilt/boot.img:system/slimkernel/boot.img \
-	device/samsung/crespo4g/prebuilt/system/etc/init.d/98mounts:system/etc/init.d/98mounts \
+	device/samsung/crespo/prebuilt/system/etc/init.d/98mounts:system/etc/init.d/98mounts \
 	device/samsung/crespo/prebuilt/system/lib/libOMX.SEC.AVC.Decoder.so:system/lib/libOMX.SEC.AVC.Decoder.so \
 	device/samsung/crespo/prebuilt/system/lib/libOMX.SEC.AVC.Encoder.so:system/lib/libOMX.SEC.AVC.Encoder.so \
 	device/samsung/crespo/prebuilt/system/lib/libOMX.SEC.M4V.Decoder.so:system/lib/libOMX.SEC.M4V.Decoder.so \
