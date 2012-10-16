@@ -37,8 +37,8 @@ PRODUCT_COPY_FILES += \
 # Release name
 PRODUCT_RELEASE_NAME := NS
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=soju BUILD_FINGERPRINT="google/soju/crespo:4.1.1/JRO03R/113740:user/release-keys" 
-PRIVATE_BUILD_DESC="soju-user 4.1.1 JRO03R 113740 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=soju BUILD_FINGERPRINT="google/soju/crespo:4.1.2/JZO54K/485486:user/release-keys" 
+PRIVATE_BUILD_DESC="soju-user 4.1.2 JZO54K 485486 release-keys"
 
 PRODUCT_NAME := slim_crespo
 PRODUCT_DEVICE := crespo
