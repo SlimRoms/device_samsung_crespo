@@ -143,7 +143,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-	camera.herring
+	camera.herring \
+       libs3cjpeg
 
 # audio
 PRODUCT_PACKAGES += \

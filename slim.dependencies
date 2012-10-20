@@ -28,6 +28,10 @@
         "repository":   "SlimRoms/proprietary_vendor_widevine",
         "target_path":  "vendor/widevine",
         "branch":     "jb"
+    },
+	{
+        "repository":   "bedalus/marmite",
+        "target_path":  "kernel/samsung/crespo",
+        "branch":     "Slim_Bean"
     }
-
 ]
