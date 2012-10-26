@@ -13,6 +13,10 @@ $(call inherit-product, vendor/slim/config/common_nexus.mk)
 PRODUCT_COPY_FILES +=  \
     vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
 
+#copy modified lights.s5pc110.so for BLN support
+PRODUCT_COPY_FILES += \
+	device/samsung/crespo/prebuilt/system/lib/hw/lights.s5pc110.so:system/lib/hw/lights.s5pc110.so
+
 #set camera info
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.camera.res=5MP
