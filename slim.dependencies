@@ -32,6 +32,6 @@
 	{
         "repository":   "bedalus/marmite",
         "target_path":  "kernel/samsung/crespo",
-        "branch":     "Slim_Bean"
+        "branch":     "Slim_Bean2"
     }
 ]
