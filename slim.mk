@@ -9,6 +9,9 @@ $(call inherit-product, vendor/slim/config/gsm.mk)
 # Inherit device settings
 $(call inherit-product, vendor/slim/config/common_nexus.mk)
 
+# Inherit torch settings
+$(call inherit-product, vendor/slim/config/common_ledflash.mk)
+
 #bootanimation
 PRODUCT_COPY_FILES +=  \
     vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
