@@ -2,36 +2,36 @@
     {
         "repository":   "SlimRoms/proprietary_vendor_samsung",
         "target_path":  "vendor/samsung",
-        "branch":     "jb"
+        "branch":     "jb4.2"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_akm",
         "target_path":  "vendor/akm",
-        "branch":     "jb"
+        "branch":     "jb4.2"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_nxp",
         "target_path":  "vendor/nxp",
-        "branch":     "jb"
+        "branch":     "jb4.2"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_imgtec",
         "target_path":  "vendor/imgtec",
-        "branch":     "jb"
+        "branch":     "jb4.2"
     },
- 	{
+    {
         "repository":   "SlimRoms/proprietary_vendor_broadcom",
         "target_path":  "vendor/broadcom",
-        "revision":     "jb"
+        "revision":     "jb4.2"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_widevine",
         "target_path":  "vendor/widevine",
-        "branch":     "jb"
+        "branch":     "jb4.2"
     },
-	{
+    {
         "repository":   "bedalus/marmite",
         "target_path":  "kernel/samsung/crespo",
-        "branch":     "Slim_Bean2"
+        "branch":     "Slim_Bean3"
     }
 ]

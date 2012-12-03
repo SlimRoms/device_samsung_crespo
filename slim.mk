@@ -18,7 +18,7 @@ PRODUCT_COPY_FILES +=  \
 
 #copy modified lights.s5pc110.so for BLN support
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/prebuilt/system/lib/hw/lights.s5pc110.so:system/lib/hw/lights.s5pc110.so
+    device/samsung/crespo/prebuilt/system/lib/hw/lights.s5pc110.so:system/lib/hw/lights.s5pc110.so
 
 #set camera info
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -26,13 +26,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 #copy 00check
 PRODUCT_COPY_FILES += \
-	vendor/slim/prebuilt/common/etc/init.d/00check:system/etc/init.d/00check
+    vendor/slim/prebuilt/common/etc/init.d/00check:system/etc/init.d/00check
 
 # Release name
 PRODUCT_RELEASE_NAME := NS
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=soju BUILD_FINGERPRINT="google/soju/crespo:4.1.2/JZO54K/485486:user/release-keys"
-PRIVATE_BUILD_DESC="soju-user 4.1.2 JZO54K 485486 release-keys"
+# Use build.prop values similar to Google's values
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=soju \
+    BUILD_FINGERPRINT="google/soju/crespo:4.2.1/JOP40D/533553:user/release-keys" \
+    PRIVATE_BUILD_DESC="soju-user 4.2.1 JOP40D 533553 release-keys" \
+    BUILD_NUMBER=533553
 
 PRODUCT_NAME := slim_crespo
 PRODUCT_DEVICE := crespo
