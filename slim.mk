@@ -29,7 +29,7 @@ PRODUCT_COPY_FILES += \
     vendor/slim/prebuilt/common/etc/init.d/00check:system/etc/init.d/00check
 
 # Release name
-PRODUCT_RELEASE_NAME := NS
+PRODUCT_RELEASE_NAME := crespo
 
 # Use build.prop values similar to Google's values
 PRODUCT_BUILD_PROP_OVERRIDES += \
