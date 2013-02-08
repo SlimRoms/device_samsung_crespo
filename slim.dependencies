@@ -22,7 +22,7 @@
     {
         "repository":   "SlimRoms/proprietary_vendor_broadcom",
         "target_path":  "vendor/broadcom",
-        "revision":     "jb4.2"
+        "branch":     "jb4.2"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_widevine",
