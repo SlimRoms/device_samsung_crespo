@@ -151,6 +151,13 @@ service bugreport /system/bin/bugmailer.sh -v
     oneshot
     keycodes 114 115 116
 
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+
 service wimax_route /system/bin/route add default dev uwbr0
     class main
     disabled
