@@ -1,12 +1,16 @@
 import init.herring.usb.rc
+import init.superuser.rc
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
     setprop ro.build.product herring
     setprop ro.product.device herring
-    setprop ro.radio.noril yes
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+
+    # Flash storage isn't a good entropy source, and only causes locking
+    # overhead in the kernel. Turn it off.
+    write /sys/block/mmcblk0/queue/add_random 0
 
 # fake some battery state
     setprop status.battery.state Slow
@@ -108,13 +112,13 @@ service wpa_supplicant /system/bin/wpa_supplicant -iwlan0 -Dnl80211 -c/data/misc
 
 # DHCPCD
 # wi-fi
-service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class main
     disabled
     oneshot
 
 # wimax
-service dhcpcd_uwbr0 /system/bin/dhcpcd -ABKL
+service dhcpcd_uwbr0 /system/bin/dhcpcd -ABDKL
     class main
     disabled
     oneshot
