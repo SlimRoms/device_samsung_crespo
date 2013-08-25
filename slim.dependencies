@@ -32,6 +32,6 @@
     {
         "repository":   "bedalus/marmite",
         "target_path":  "kernel/samsung/crespo",
-        "branch":     "marmite8.5"
+        "branch":     "marmite9.0"
     }
 ]

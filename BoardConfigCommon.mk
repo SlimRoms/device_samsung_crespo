@@ -110,3 +110,16 @@ TARGET_KERNEL_CONFIG := slim_defconfig
 # No SDK blobs
 BUILD_EMULATOR_SENSORS_MODULE := false
 BUILD_EMULATOR_GPS_MODULE := false
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/crespo/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    device.te \
+    domain.te \
+    file_contexts \
+    mediaserver.te \
+    property_contexts \
+    pvrsrvinit.te \
+    rild.te
