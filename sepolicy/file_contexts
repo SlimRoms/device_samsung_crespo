@@ -5,6 +5,7 @@
 
 # Bluetooth
 /dev/s3c2410_serial0                                u:object_r:hci_attach_dev:s0
+/dev/block/mtdblock6                                u:object_r:unlabeled:s0
 
 # GFX
 /dev/pvrsrvkm                                       u:object_r:powervr_device:s0
