@@ -30,8 +30,8 @@
         "branch":     "jb4.3"
     },
     {
-        "repository":   "bedalus/marmite",
+        "repository":   "DerTeufel/android_kernel_samsung_crespo",
         "target_path":  "kernel/samsung/crespo",
-        "branch":     "marmite9.0"
+        "branch":     "cm-10.2"
     }
 ]

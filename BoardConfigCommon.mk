@@ -99,13 +99,13 @@ BOARD_ALLOW_EGL_HIBERNATION := true
 
 
 # hwcomposer: custom vsync ioctl
-BOARD_CUSTOM_VSYNC_IOCTL := false
+BOARD_CUSTOM_VSYNC_IOCTL := true
 
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/samsung/crespo
 
-TARGET_KERNEL_CONFIG := slim_defconfig
+TARGET_KERNEL_CONFIG := crespo_defconfig
 
 # No SDK blobs
 BUILD_EMULATOR_SENSORS_MODULE := false
