@@ -30,7 +30,7 @@
         "branch":     "jb4.3"
     },
     {
-        "repository":   "DerTeufel/android_kernel_samsung_crespo",
+        "repository":   "Hellybean/android_kernel_samsung_crespo",
         "target_path":  "kernel/samsung/crespo",
         "branch":     "cm-10.2"
     }
