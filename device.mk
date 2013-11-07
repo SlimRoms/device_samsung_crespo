@@ -38,13 +38,22 @@
 PRODUCT_COPY_FILES := \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
+# Prebuilt stuff
+PRODUCT_COPY_FILES += \
+        device/samsung/crespo/prebuilt/zImage:kernel \
+        device/samsung/crespo/prebuilt/flash_image:system/bin/flash_image \
+	device/samsung/crespo/prebuilt/backuptool.sh:system/bin/backuptool.sh
+
 # GPS config
 PRODUCT_COPY_FILES += \
-        device/samsung/crespo/gps.xml:system/vendor/etc/gps.xml \
-        device/samsung/crespo/gps.conf:system/etc/gps.conf
+        device/samsung/crespo/configs/gps.xml:system/vendor/etc/gps.xml \
+        device/samsung/crespo/configs/gps.conf:system/etc/gps.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.default_network=3
+
+# Packages
+PRODUCT_PACKAGES += Email Superuser
 
 $(call inherit-product, device/samsung/crespo/device_base.mk)
 

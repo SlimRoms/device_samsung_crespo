@@ -37,29 +37,18 @@
 # 257829 = IMM30B
 # 262866 = IMM30D
 # 299849 = IMM76D
-# 367151 = IMM76M
 # end ics-mr1
-# start jb-dev
-# 385121 = JRN79
-# 397816 = JRO03B
-# 398337 = JRO03C
-# end jb-dev
-BRANCH=jb-dev
+BRANCH=ics-mr1
 if test $BRANCH=ics-mr1
 then
-  ZIP=soju-ota-367151.zip
-  BUILD=imm76m
+  ZIP=soju-ota-299849.zip
+  BUILD=imm76d
 fi # ics-mr1
-if test $BRANCH=jb-dev
-then
-  ZIP=soju-ota-398337.zip
-  BUILD=jro03c
-fi # jb-dev
 ROOTDEVICE=crespo
 DEVICE=crespo
 MANUFACTURER=samsung
 
-for COMPANY in akm broadcom cypress imgtec nxp samsung widevine
+for COMPANY in akm broadcom cypress imgtec nxp samsung
 do
   echo Processing files from $COMPANY
   rm -rf tmp
@@ -112,11 +101,6 @@ do
             system/vendor/lib/libsec-ril.so \
             "
     ;;
-  widevine)
-    TO_EXTRACT="\
-            system/lib/libdrmdecrypt.so \
-            "
-    ;;
   esac
   echo \ \ Extracting files from OTA package
   for ONE_FILE in $TO_EXTRACT
@@ -126,6 +110,14 @@ do
     if test $ONE_FILE = system/vendor/bin/gpsd -o $ONE_FILE = system/vendor/bin/pvrsrvinit
     then
       chmod a+x $FILEDIR/$(basename $ONE_FILE) || echo \ \ \ \ Error chmoding $ONE_FILE
+    fi
+    if test $(echo $ONE_FILE | grep \\.apk\$ | wc -l) = 1
+    then
+      echo \ \ \ \ Splitting $ONE_FILE
+      mkdir -p $FILEDIR/$(basename $ONE_FILE).parts || echo \ \ \ \ Error making parts dir for $ONE_FILE
+      unzip $FILEDIR/$(basename $ONE_FILE) -d $FILEDIR/$(basename $ONE_FILE).parts > /dev/null || echo \ \ \ \ Error unzipping $ONE_FILE
+      rm $FILEDIR/$(basename $ONE_FILE) || echo \ \ \ \ Error removing original $ONE_FILE
+      rm -rf $FILEDIR/$(basename $ONE_FILE).parts/META-INF || echo \ \ \ \ Error removing META-INF for $ONE_FILE
     fi
   done
   echo \ \ Setting up $COMPANY-specific makefiles

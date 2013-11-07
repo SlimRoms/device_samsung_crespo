@@ -19,10 +19,8 @@
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a8
 
-# low memory
-TARGET_ARCH_LOWMEM := true
+TARGET_CPU_VARIANT := cortex-a8
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -42,13 +40,11 @@ TARGET_SEC_INTERNAL_STORAGE := false
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 
-# USE_CAMERA_STUB := true
-# ifeq ($(USE_CAMERA_STUB),false)
-# BOARD_CAMERA_LIBRARIES := libcamera
-# endif
+# low memory
+TARGET_ARCH_LOWMEM := true
 
-BOARD_USES_HGL := true
-BOARD_USES_OVERLAY := true
+#BOARD_USES_HGL := true
+#BOARD_USES_OVERLAY := true
 BOARD_USES_GENERIC_AUDIO := false
 
 BOARD_NAND_PAGE_SIZE := 4096
@@ -60,16 +56,16 @@ BOARD_KERNEL_CMDLINE := console=ttyFIQ0 no_console_suspend
 
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_crespo
-TARGET_RECOVERY_FSTAB := device/samsung/crespo/fstab.herring
-RECOVERY_FSTAB_VERSION := 2
+TARGET_RECOVERY_FSTAB := device/samsung/crespo/ramdisk/fstab.herring
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/crespo
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824
 BOARD_FLASH_BLOCK_SIZE := 4096
+
+
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/crespo/graphics.c
 
 BOARD_USE_SKIA_LCDTEXT := true
 
@@ -95,31 +91,18 @@ USE_OPENGL_RENDERER	:= true
 # would hurt performance significantly (see b/6016711)
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
-BOARD_ALLOW_EGL_HIBERNATION := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
+BOARD_ALLOW_EGL_HIBERNATION := true
 
 # hwcomposer: custom vsync ioctl
 BOARD_CUSTOM_VSYNC_IOCTL := true
-
-
-# Inline kernel building
-TARGET_KERNEL_SOURCE := kernel/samsung/crespo
-
-TARGET_KERNEL_CONFIG := crespo_defconfig
 
 # No SDK blobs
 BUILD_EMULATOR_SENSORS_MODULE := false
 BUILD_EMULATOR_GPS_MODULE := false
 
-# SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/crespo/sepolicy
+# Inline kernel building
+TARGET_KERNEL_SOURCE := kernel/samsung/crespo
 
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    domain.te \
-    file_contexts \
-    mediaserver.te \
-    property_contexts \
-    pvrsrvinit.te \
-    rild.te
+TARGET_KERNEL_CONFIG := crespo_defconfig

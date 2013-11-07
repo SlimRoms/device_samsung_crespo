@@ -1,3 +1,4 @@
+# Portions Copyright (C) 2012 VMware, Inc. All Rights Reserved.
 # Copyright (C) 2010 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,31 +40,46 @@
 # These is the hardware-specific overlay, which points to the location
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
-DEVICE_PACKAGE_OVERLAYS := device/samsung/crespo/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/crespo/overlay
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
-	device/samsung/crespo/egl.cfg:system/lib/egl/egl.cfg
+	device/samsung/crespo/configs/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/init.herring.rc:root/init.herring.rc \
-	device/samsung/crespo/init.herring.usb.rc:root/init.herring.usb.rc \
-	device/samsung/crespo/fstab.herring:root/fstab.herring \
-	device/samsung/crespo/ueventd.herring.rc:root/ueventd.herring.rc
+	device/samsung/crespo/ramdisk/init.herring.rc:root/init.herring.rc \
+	device/samsung/crespo/ramdisk/init.herring.usb.rc:root/init.herring.usb.rc \
+	device/samsung/crespo/ramdisk/fstab.herring:root/fstab.herring \
+	device/samsung/crespo/ramdisk/ueventd.herring.rc:root/ueventd.herring.rc
+
+# Copy Superuser init to root for non embedded device
+PRODUCT_COPY_FILES += \
+	external/koush/Superuser/init.superuser.rc:root/init.superuser.rc
+
+# Basic props
+PRODUCT_PROPERTY_OVERRIDES += \
+	keyguard.no_require_sim=true \
+	ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+	ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+	ro.com.google.clientidbase=android-google \
+	ro.com.android.wifi-watchlist=GoogleGuest \
+	ro.setupwizard.enterprise_mode=1 \
+	ro.com.android.dataroaming=false \
+	ro.kernel.android.checkjni=0
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
-	device/samsung/crespo/s3c-keypad.kcm:system/usr/keychars/s3c-keypad.kcm \
-	device/samsung/crespo/herring-keypad.kl:system/usr/keylayout/herring-keypad.kl \
-	device/samsung/crespo/herring-keypad.kcm:system/usr/keychars/herring-keypad.kcm \
-	device/samsung/crespo/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
-	device/samsung/crespo/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
-	device/samsung/crespo/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-	device/samsung/crespo/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
-	device/samsung/crespo/mxt224_ts_input.kl:system/usr/keylayout/mxt224_ts_input.kl \
-	device/samsung/crespo/mxt224_ts_input.kcm:system/usr/keychars/mxt224_ts_input.kcm
+	device/samsung/crespo/input/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
+	device/samsung/crespo/input/s3c-keypad.kcm:system/usr/keychars/s3c-keypad.kcm \
+	device/samsung/crespo/input/herring-keypad.kl:system/usr/keylayout/herring-keypad.kl \
+	device/samsung/crespo/input/herring-keypad.kcm:system/usr/keychars/herring-keypad.kcm \
+	device/samsung/crespo/input/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
+	device/samsung/crespo/input/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
+	device/samsung/crespo/input/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
+	device/samsung/crespo/input/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
+	device/samsung/crespo/input/mxt224_ts_input.kl:system/usr/keylayout/mxt224_ts_input.kl \
+	device/samsung/crespo/input/mxt224_ts_input.kcm:system/usr/keychars/mxt224_ts_input.kcm
 
 #NVRAM setup
 PRODUCT_COPY_FILES += \
@@ -118,8 +134,8 @@ PRODUCT_CHARACTERISTICS := nosdcard
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
 	device/samsung/crespo/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
-	device/samsung/crespo/media_profiles.xml:system/etc/media_profiles.xml \
-	device/samsung/crespo/media_codecs.xml:system/etc/media_codecs.xml
+	device/samsung/crespo/configs/media_profiles.xml:system/etc/media_profiles.xml \
+	device/samsung/crespo/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 
 # These are the OpenMAX IL modules
@@ -134,12 +150,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	lights.s5pc110 \
 	hwcomposer.s5pc110 \
-	sensors.herring 
+	sensors.herring \
+	power.s5pc110 \
+	libs3cjpeg
 
 # Camera
 PRODUCT_PACKAGES += \
-	camera.herring \
-       libs3cjpeg
+	camera.herring
 
 # audio
 PRODUCT_PACKAGES += \
@@ -149,7 +166,8 @@ PRODUCT_PACKAGES += \
 	audio.usb.default
 
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/libaudio/audio_policy.conf:system/etc/audio_policy.conf
+	device/samsung/crespo/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
+	device/samsung/crespo/libaudio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -161,13 +179,9 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	com.android.future.usb.accessory
 
-# CrespoParts
-PRODUCT_PACKAGES += \
-	CrespoParts
-
 # Input device calibration files
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
+	device/samsung/crespo/input/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -187,21 +201,20 @@ PRODUCT_COPY_FILES += \
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
-PRODUCT_PROPERTY_OVERRIDES := \
-    ro.opengles.version=131072
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.opengles.version=131072
+
+# Support for Browser's saved page feature. This allows
+# for pages saved on previous versions of the OS to be
+# viewed on the current OS.
+PRODUCT_PACKAGES += \
+	libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
-
-# Disable scissor optimizations
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.hwui.disable_scissor_opt=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.bq.gpu_to_cpu_unsupported=1
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -214,21 +227,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Screen size is "normal", density is "hdpi"
 PRODUCT_AAPT_CONFIG := normal hdpi
-
-ifeq ($(TARGET_PREBUILT_WIFI_MODULE),)
-LOCAL_WIFI_MODULE := device/samsung/crespo/bcm4329.ko
-else
-LOCAL_WIFI_MODULE := $(TARGET_PREBUILT_WIFI_MODULE)
-endif
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/samsung/crespo/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
 
 $(call inherit-product-if-exists, vendor/nxp/pn544/nxp-pn544-fw-vendor.mk)
 

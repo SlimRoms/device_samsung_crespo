@@ -26,4 +26,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_crespo.mk
+    $(LOCAL_DIR)/aosp_crespo.mk

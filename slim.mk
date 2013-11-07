@@ -1,8 +1,8 @@
-$(call inherit-product, device/samsung/crespo/full_crespo.mk)
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 480
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# This is where we'd set a backup provider if we had one
+#$(call inherit-product, device/sample/products/backup_overlay.mk)
+$(call inherit-product, device/samsung/crespo/device.mk)
 
 # Inherit some common stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
@@ -15,10 +15,6 @@ $(call inherit-product, vendor/slim/config/common_nexus.mk)
 
 # Inherit torch settings
 $(call inherit-product, vendor/slim/config/common_ledflash.mk)
-
-#copy modified lights.s5pc110.so for BLN support
-PRODUCT_COPY_FILES += \
-    device/samsung/crespo/prebuilt/system/lib/hw/lights.s5pc110.so:system/lib/hw/lights.s5pc110.so
 
 #set camera info
 PRODUCT_PROPERTY_OVERRIDES += \
