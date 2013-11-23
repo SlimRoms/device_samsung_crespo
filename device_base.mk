@@ -44,42 +44,46 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/crespo/overlay
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
-	device/samsung/crespo/configs/egl.cfg:system/lib/egl/egl.cfg
+    device/samsung/crespo/configs/egl.cfg:system/lib/egl/egl.cfg
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/ramdisk/init.herring.rc:root/init.herring.rc \
-	device/samsung/crespo/ramdisk/init.herring.usb.rc:root/init.herring.usb.rc \
-	device/samsung/crespo/ramdisk/fstab.herring:root/fstab.herring \
-	device/samsung/crespo/ramdisk/ueventd.herring.rc:root/ueventd.herring.rc
+    device/samsung/crespo/ramdisk/init.herring.rc:root/init.herring.rc \
+    device/samsung/crespo/ramdisk/init.herring.usb.rc:root/init.herring.usb.rc \
+    device/samsung/crespo/ramdisk/fstab.herring:root/fstab.herring \
+    device/samsung/crespo/ramdisk/ueventd.herring.rc:root/ueventd.herring.rc
 
 # Copy Superuser init to root for non embedded device
 PRODUCT_COPY_FILES += \
-	external/koush/Superuser/init.superuser.rc:root/init.superuser.rc
+    external/koush/Superuser/init.superuser.rc:root/init.superuser.rc
 
 # Basic props
 PRODUCT_PROPERTY_OVERRIDES += \
-	keyguard.no_require_sim=true \
-	ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-	ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-	ro.com.google.clientidbase=android-google \
-	ro.com.android.wifi-watchlist=GoogleGuest \
-	ro.setupwizard.enterprise_mode=1 \
-	ro.com.android.dataroaming=false \
-	ro.kernel.android.checkjni=0
+    keyguard.no_require_sim=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-google \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dataroaming=false \
+    ro.kernel.android.checkjni=0
+
+# Low RAM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.low_ram=true
 
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/input/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
-	device/samsung/crespo/input/s3c-keypad.kcm:system/usr/keychars/s3c-keypad.kcm \
-	device/samsung/crespo/input/herring-keypad.kl:system/usr/keylayout/herring-keypad.kl \
-	device/samsung/crespo/input/herring-keypad.kcm:system/usr/keychars/herring-keypad.kcm \
-	device/samsung/crespo/input/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
-	device/samsung/crespo/input/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
-	device/samsung/crespo/input/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
-	device/samsung/crespo/input/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
-	device/samsung/crespo/input/mxt224_ts_input.kl:system/usr/keylayout/mxt224_ts_input.kl \
-	device/samsung/crespo/input/mxt224_ts_input.kcm:system/usr/keychars/mxt224_ts_input.kcm
+    device/samsung/crespo/input/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
+    device/samsung/crespo/input/s3c-keypad.kcm:system/usr/keychars/s3c-keypad.kcm \
+    device/samsung/crespo/input/herring-keypad.kl:system/usr/keylayout/herring-keypad.kl \
+    device/samsung/crespo/input/herring-keypad.kcm:system/usr/keychars/herring-keypad.kcm \
+    device/samsung/crespo/input/cypress-touchkey.kl:system/usr/keylayout/cypress-touchkey.kl \
+    device/samsung/crespo/input/cypress-touchkey.kcm:system/usr/keychars/cypress-touchkey.kcm \
+    device/samsung/crespo/input/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
+    device/samsung/crespo/input/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
+    device/samsung/crespo/input/mxt224_ts_input.kl:system/usr/keylayout/mxt224_ts_input.kl \
+    device/samsung/crespo/input/mxt224_ts_input.kcm:system/usr/keychars/mxt224_ts_input.kcm
 
 #NVRAM setup
 PRODUCT_COPY_FILES += \
@@ -91,134 +95,135 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-	libnfc \
-	libnfc_jni \
-	Nfc \
-	Tag
+    libnfc \
+    libnfc_jni \
+    Nfc \
+    Tag
 
 # Commands to migrate prefs from com.android.nfc3 to com.android.nfc
 PRODUCT_COPY_FILES += \
-	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
+    packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt
 
 # file that declares the MIFARE NFC constant
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml
 
 # NFC EXTRAS add-on API
 PRODUCT_PACKAGES += \
-	com.android.nfc_extras
+    com.android.nfc_extras
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
-	NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access.xml
+    NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access.xml
 else
-	NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access_debug.xml
+    NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access_debug.xml
 endif
 PRODUCT_COPY_FILES += \
-	$(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # Generated kcm keymaps
 PRODUCT_PACKAGES += \
-	s3c-keypad.kcm \
-	cypress-touchkey.kcm
+    s3c-keypad.kcm \
+    cypress-touchkey.kcm
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-	make_ext4fs \
-	setup_fs
+    make_ext4fs \
+    setup_fs
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
-	device/samsung/crespo/configs/media_profiles.xml:system/etc/media_profiles.xml \
-	device/samsung/crespo/configs/media_codecs.xml:system/etc/media_codecs.xml
+    hardware/samsung/exynos3/s5pc110/sec_mm/sec_omx/sec_omx_core/secomxregistry:system/etc/secomxregistry \
+    device/samsung/crespo/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/crespo/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 
 # These are the OpenMAX IL modules
 PRODUCT_PACKAGES += \
-	libSEC_OMX_Core \
-	libOMX.SEC.AVC.Decoder \
-	libOMX.SEC.M4V.Decoder \
-	libOMX.SEC.M4V.Encoder \
-	libOMX.SEC.AVC.Encoder
+    libSEC_OMX_Core \
+    libOMX.SEC.AVC.Decoder \
+    libOMX.SEC.M4V.Decoder \
+    libOMX.SEC.M4V.Encoder \
+    libOMX.SEC.AVC.Encoder
 
 # Misc other modules
 PRODUCT_PACKAGES += \
-	lights.s5pc110 \
-	hwcomposer.s5pc110 \
-	sensors.herring \
-	power.s5pc110 \
-	libs3cjpeg
+    lights.s5pc110 \
+    hwcomposer.s5pc110 \
+    sensors.herring \
+    power.s5pc110 \
+    libs3cjpeg \
+    libemoji
 
 # Camera
 PRODUCT_PACKAGES += \
-	camera.herring
+    camera.herring
 
 # audio
 PRODUCT_PACKAGES += \
-	audio_policy.herring \
-	audio.primary.herring \
-	audio.a2dp.default \
-	audio.usb.default
+    audio_policy.herring \
+    audio.primary.herring \
+    audio.a2dp.default \
+    audio.usb.default
 
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
-	device/samsung/crespo/libaudio/audio_effects.conf:system/vendor/etc/audio_effects.conf
+    device/samsung/crespo/libaudio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/samsung/crespo/libaudio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # NFC
 PRODUCT_PACKAGES += \
-	nfc.herring
+    nfc.herring
 
 # Libs
 PRODUCT_PACKAGES += \
-	libcamera \
-	libstagefrighthw \
-	com.android.future.usb.accessory
+    libcamera \
+    libstagefrighthw \
+    com.android.future.usb.accessory
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/input/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
+    device/samsung/crespo/input/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-	frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.opengles.version=131072
+    ro.opengles.version=131072
 
 # Support for Browser's saved page feature. This allows
 # for pages saved on previous versions of the OS to be
 # viewed on the current OS.
 PRODUCT_PACKAGES += \
-	libskia_legacy
+    libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
+    wifi.interface=wlan0
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=mass_storage
 
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
 

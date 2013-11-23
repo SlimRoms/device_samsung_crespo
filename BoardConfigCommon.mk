@@ -39,9 +39,7 @@ TARGET_SEC_INTERNAL_STORAGE := false
 # Enable NEON feature
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
-
-# low memory
-TARGET_ARCH_LOWMEM := true
+TARGET_ARCH_HAVE_NEON := true
 
 #BOARD_USES_HGL := true
 #BOARD_USES_OVERLAY := true
@@ -82,7 +80,7 @@ WIFI_DRIVER_FW_PATH_STA     := "/vendor/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P     := "/vendor/firmware/fw_bcmdhd_p2p.bin"
 
-USE_OPENGL_RENDERER	:= true
+USE_OPENGL_RENDERER    := true
 
 # TARGET_DISABLE_TRIPLE_BUFFERING can be used to disable triple buffering
 # on per target basis. On crespo it is possible to do so in theory
@@ -91,6 +89,7 @@ USE_OPENGL_RENDERER	:= true
 # would hurt performance significantly (see b/6016711)
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 BOARD_ALLOW_EGL_HIBERNATION := true

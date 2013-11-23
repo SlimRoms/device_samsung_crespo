@@ -2,32 +2,37 @@
     {
         "repository":   "SlimRoms/proprietary_vendor_samsung",
         "target_path":  "vendor/samsung",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
+    },
+    {
+        "repository":   "SlimRoms/hardware_samsung",
+        "target_path":  "hardware/samsung",
+        "branch":     "kk4.4"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_akm",
         "target_path":  "vendor/akm",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_nxp",
         "target_path":  "vendor/nxp",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_imgtec",
         "target_path":  "vendor/imgtec",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_broadcom",
         "target_path":  "vendor/broadcom",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
     },
     {
         "repository":   "SlimRoms/proprietary_vendor_widevine",
         "target_path":  "vendor/widevine",
-        "branch":     "jb4.3"
+        "branch":     "kk4.4"
     },
     {
         "repository":   "Hellybean/android_kernel_samsung_crespo",
