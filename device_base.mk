@@ -42,10 +42,6 @@
 # application settings that are stored in resourced.
 DEVICE_PACKAGE_OVERLAYS += device/samsung/crespo/overlay
 
-# These are the hardware-specific configuration files
-PRODUCT_COPY_FILES := \
-    device/samsung/crespo/configs/egl.cfg:system/lib/egl/egl.cfg
-
 # Init files
 PRODUCT_COPY_FILES += \
     device/samsung/crespo/ramdisk/init.herring.rc:root/init.herring.rc \
