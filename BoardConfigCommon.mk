@@ -94,6 +94,10 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 BOARD_ALLOW_EGL_HIBERNATION := true
 
+# Increase EGL cache size to 2MB
+MAX_EGL_CACHE_SIZE := 2097152
+MAX_EGL_CACHE_KEY_SIZE := 4096
+
 # hwcomposer: custom vsync ioctl
 BOARD_CUSTOM_VSYNC_IOCTL := true
 
