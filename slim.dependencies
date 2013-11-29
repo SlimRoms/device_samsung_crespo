@@ -35,8 +35,8 @@
         "branch":     "kk4.4"
     },
     {
-        "repository":   "Hellybean/android_kernel_samsung_crespo",
+        "repository":   "tchaari/android_kernel_samsung_crespo",
         "target_path":  "kernel/samsung/crespo",
-        "branch":     "cm-10.2"
+        "branch":     "kk4.4"
     }
 ]
