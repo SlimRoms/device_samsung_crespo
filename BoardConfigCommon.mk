@@ -109,3 +109,15 @@ BUILD_EMULATOR_GPS_MODULE := false
 TARGET_KERNEL_SOURCE := kernel/samsung/crespo
 
 TARGET_KERNEL_CONFIG := crespo_defconfig
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/crespo/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    device.te \
+    file_contexts \
+    mediaserver.te \
+    property_contexts \
+    pvrsrvinit.te \
+    rild.te
