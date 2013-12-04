@@ -19,15 +19,13 @@
 # product configuration (apps).
 #
 
-# Get the long list of APNs
-PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
-
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/samsung/crespo/device.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-# This is where we'd set a backup provider if we had one
-#$(call inherit-product, device/sample/products/backup_overlay.mk)
-#$(call inherit-product, device/sample/products/location_overlay.mk)
+$(call inherit-product, device/samsung/crespo/full_crespo.mk)
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 480
+
 # Inherit some common stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
@@ -39,6 +37,10 @@ $(call inherit-product, vendor/slim/config/common_nexus.mk)
 
 # Inherit torch settings
 $(call inherit-product, vendor/slim/config/common_ledflash.mk)
+
+#set camera info
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.camera.res=5MP
 
 # Release name
 PRODUCT_RELEASE_NAME := crespo
