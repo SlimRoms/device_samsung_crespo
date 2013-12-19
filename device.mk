@@ -46,6 +46,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=3
 
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
 $(call inherit-product, device/samsung/crespo/device_base.mk)
 
 # See comment at the top of this file. This is where the other

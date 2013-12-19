@@ -32,12 +32,6 @@ $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 # Inherit some common stuff.
 $(call inherit-product, vendor/slim/config/gsm.mk)
 
-# Inherit device settings
-$(call inherit-product, vendor/slim/config/common_nexus.mk)
-
-# Inherit torch settings
-$(call inherit-product, vendor/slim/config/common_ledflash.mk)
-
 #set camera info
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.camera.res=5MP
