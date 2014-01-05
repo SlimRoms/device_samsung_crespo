@@ -1,5 +1,4 @@
 import init.herring.usb.rc
-import init.superuser.rc
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -7,10 +6,6 @@ on boot
     setprop ro.build.product herring
     setprop ro.product.device herring
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
-
-    # Flash storage isn't a good entropy source, and only causes locking
-    # overhead in the kernel. Turn it off.
-    write /sys/block/mmcblk0/queue/add_random 0
 
 # fake some battery state
     setprop status.battery.state Slow
@@ -31,16 +26,21 @@ on boot
     chown gps root /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 660 /sys/class/sec/gps/GPS_PWR_EN/value
 
+# cpufreq, set ondemand governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+
 on fs
     mkdir /efs 0775 radio radio
     mount yaffs2 mtd@efs /efs noatime nosuid nodev
+    mount yaffs2 mtd@cache /cache noatime nosuid nodev
     chmod 770 /efs/bluetooth
     chmod 770 /efs/imei
     mount_all /fstab.herring
+    swapon_all /fstab.herring
 
     export EXTERNAL_STORAGE /storage/sdcard0
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
+    mkdir /storage/sdcard0 0000 system system
+    mkdir /mnt/media_rw/sdcard0 0000 system system
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
@@ -52,6 +52,8 @@ on fs
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    restorecon /sys/class/rfkill/rfkill0/state
+    restorecon /sys/class/rfkill/rfkill0/type
 
 # We chown/chmod /efs because mount is run as root + defaults
     chown radio radio /efs
@@ -64,6 +66,63 @@ on fs
 
 # Permissions for System Server and daemons.
     chown system system /sys/class/backlight/s5p_bl/brightness
+
+# Configure and enable KSM
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/run 1
+
+# permission for tuning knobs
+    chown system system /sys/class/misc/backlightdimmer/delay
+    chmod 660 /sys/class/misc/backlightdimmer/delay
+    restorecon /sys/class/misc/backlightdimmer/delay
+
+    chown system system /sys/class/misc/pwm_duty/pwm_duty
+    chmod 660 /sys/class/misc/pwm_duty/pwm_duty
+    restorecon /sys/class/misc/pwm_duty/pwm_duty
+
+    chown system system /sys/class/misc/samoled_color/blue_multiplier
+    chown system system /sys/class/misc/samoled_color/blue_v1_offset
+    chown system system /sys/class/misc/samoled_color/green_multiplier
+    chown system system /sys/class/misc/samoled_color/green_v1_offset
+    chown system system /sys/class/misc/samoled_color/red_multiplier
+    chown system system /sys/class/misc/samoled_color/red_v1_offset
+    chmod 660 /sys/class/misc/samoled_color/blue_multiplier
+    chmod 660 /sys/class/misc/samoled_color/blue_v1_offset
+    chmod 660 /sys/class/misc/samoled_color/green_multiplier
+    chmod 660 /sys/class/misc/samoled_color/green_v1_offset
+    chmod 660 /sys/class/misc/samoled_color/red_multiplier
+    chmod 660 /sys/class/misc/samoled_color/red_v1_offset
+    restorecon /sys/class/misc/samoled_color/blue_multiplier
+    restorecon /sys/class/misc/samoled_color/blue_v1_offset
+    restorecon /sys/class/misc/samoled_color/green_multiplier
+    restorecon /sys/class/misc/samoled_color/green_v1_offset
+    restorecon /sys/class/misc/samoled_color/red_multiplier
+    restorecon /sys/class/misc/samoled_color/red_v1_offset
+
+# Intentionally left world-writable for Voodoo Sound app
+    restorecon /sys/devices/virtual/misc/voodoo_sound/adc_osr128
+    restorecon /sys/devices/virtual/misc/voodoo_sound/dac_direct
+    restorecon /sys/devices/virtual/misc/voodoo_sound/dac_osr128
+    restorecon /sys/devices/virtual/misc/voodoo_sound/debug_log
+    restorecon /sys/devices/virtual/misc/voodoo_sound/digital_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/fll_tuning
+    restorecon /sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_normalize_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_restore_bass
+    restorecon /sys/devices/virtual/misc/voodoo_sound/fm_radio_headset_restore_highs
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_amplifier_level
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b1_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b2_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b3_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b4_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_b5_gain
+    restorecon /sys/devices/virtual/misc/voodoo_sound/headphone_eq_bands_values
+    restorecon /sys/devices/virtual/misc/voodoo_sound/mono_downmix
+    restorecon /sys/devices/virtual/misc/voodoo_sound/recording_preset
+    restorecon /sys/devices/virtual/misc/voodoo_sound/speaker_tuning
+    restorecon /sys/devices/virtual/misc/voodoo_sound/stereo_expansion
+    restorecon /sys/devices/virtual/misc/voodoo_sound/stereo_expansion_gain
 
 on post-fs-data
 # wi-fi
@@ -101,7 +160,11 @@ service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0
     class late_start
     disabled
 
-service wpa_supplicant /system/bin/wpa_supplicant -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -O/data/misc/wifi/sockets -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -O/data/misc/wifi/sockets \
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+
     class main
     socket wpa_wlan0 dgram 0660 wifi wifi
     disabled

@@ -98,12 +98,13 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 BOARD_ALLOW_EGL_HIBERNATION := true
 
-# Increase EGL cache size to 2MB
-MAX_EGL_CACHE_SIZE := 2097152
-MAX_EGL_CACHE_KEY_SIZE := 4096
+DEFAULT_FB_NUM := 2
+
+BOARD_USES_HGL := true
+TARGET_ARCH_LOWMEM := true
 
 # hwcomposer: custom vsync ioctl
-BOARD_CUSTOM_VSYNC_IOCTL := false
+BOARD_CUSTOM_VSYNC_IOCTL := true
 
 # No SDK blobs
 BUILD_EMULATOR_SENSORS_MODULE := false
@@ -113,6 +114,9 @@ BUILD_EMULATOR_GPS_MODULE := false
 TARGET_KERNEL_SOURCE := kernel/samsung/crespo
 
 TARGET_KERNEL_CONFIG := crespo_defconfig
+
+# Override healthd HAL
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos3
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
