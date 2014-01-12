@@ -104,7 +104,7 @@ BOARD_USES_HGL := true
 TARGET_ARCH_LOWMEM := true
 
 # hwcomposer: custom vsync ioctl
-BOARD_CUSTOM_VSYNC_IOCTL := true
+BOARD_CUSTOM_VSYNC_IOCTL := false
 
 # No SDK blobs
 BUILD_EMULATOR_SENSORS_MODULE := false
