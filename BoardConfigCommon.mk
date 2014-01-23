@@ -117,15 +117,3 @@ TARGET_KERNEL_CONFIG := crespo_defconfig
 
 # Override healthd HAL
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos3
-
-# SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/crespo/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    file_contexts \
-    mediaserver.te \
-    property_contexts \
-    pvrsrvinit.te \
-    rild.te
