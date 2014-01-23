@@ -30,9 +30,6 @@
     <!-- Our amoled doesn't animate well. -->
     <bool name="config_animateScreenLights">false</bool>
 
-    <!-- disable menu hard key on Crespo in non-pattern lockscreen -->
-    <bool name="config_disableMenuKeyInLockScreen">true</bool>
-
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
 
