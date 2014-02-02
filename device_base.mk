@@ -159,6 +159,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.herring
 
+# CrespoParts
+PRODUCT_PACKAGES += \
+	CrespoParts
+
 # audio
 PRODUCT_PACKAGES += \
     audio_policy.herring \
