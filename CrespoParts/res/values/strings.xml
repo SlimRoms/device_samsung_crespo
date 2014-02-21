@@ -42,6 +42,11 @@
     <string name="touchkey_notification_title_head">Backlight notifications</string>
     <string name="touchkey_notification_summary_head">The touch key backlights will turn on when there is a notification</string>
 
+    <string name="category_fastcharge_title">Fast Charge</string>
+    <string name="fastcharge_title_head">Fast Charge</string>
+    <string name="fastcharge_summary_head">This enables fast charge through USB</string>
+
+
     <string name="category_vibration_title">Vibration</string>
     <string name="vibration_title_head">Vibration</string>
     <string name="vibration_summary_head">Control vibration intensity</string>

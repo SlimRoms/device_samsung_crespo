@@ -9,6 +9,14 @@
             android:summary="@string/touchkey_notification_summary_head" />
     </PreferenceCategory>
 
+    <!-- Touch key backlight timeout -->
+    <PreferenceCategory android:key="category_fastcharge"
+        android:title="@string/category_fastcharge_title">
+        <CheckBoxPreference android:key="fast_charge"
+            android:title="@string/fastcharge_title_head"
+            android:summary="@string/fastcharge_summary_head" />
+    </PreferenceCategory>
+
     <PreferenceCategory
            android:title="@string/category_vibration_title">
             <!-- Vibration -->

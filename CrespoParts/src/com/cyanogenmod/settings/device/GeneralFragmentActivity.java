@@ -39,10 +39,12 @@ import com.cyanogenmod.settings.device.R;
 public class GeneralFragmentActivity extends PreferenceFragment {
 
     private static final String TOUCHKEY_NOTIFICATION_FILE = "/sys/class/misc/backlightnotification/enabled";
+    private static final String FAST_CHARGE_FILE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String PREF_ENABLED = "1";
     private static final String TAG = "CrespoParts_General";
 
     private CheckBoxPreference mNotification;
+    private CheckBoxPreference mFastcharge;
     private VibrationPreference mVibration;
 
     @Override
@@ -53,11 +55,18 @@ public class GeneralFragmentActivity extends PreferenceFragment {
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mNotification = (CheckBoxPreference) findPreference(DeviceSettings.KEY_NOTIFICATION);
+        mFastcharge = (CheckBoxPreference) findPreference(DeviceSettings.KEY_FAST_CHARGE);
 
         if (isSupported(TOUCHKEY_NOTIFICATION_FILE)) {
             mNotification.setChecked(PREF_ENABLED.equals(Utils.readOneLine(TOUCHKEY_NOTIFICATION_FILE)));
         } else {
             mNotification.setEnabled(false);
+        }
+
+        if (isSupported(FAST_CHARGE_FILE)) {
+            mFastcharge.setChecked(PREF_ENABLED.equals(Utils.readOneLine(FAST_CHARGE_FILE)));
+        } else {
+            mFastcharge.setEnabled(false);
         }
 
         mVibration = (VibrationPreference) findPreference(DeviceSettings.KEY_VIBRATION);
@@ -76,6 +85,12 @@ public class GeneralFragmentActivity extends PreferenceFragment {
             final CheckBoxPreference chkPref = (CheckBoxPreference) preference;
             boxValue = chkPref.isChecked() ? "1" : "0";
             Utils.writeValue(TOUCHKEY_NOTIFICATION_FILE, boxValue);
+        } else if (key.equals(DeviceSettings.KEY_FAST_CHARGE)) {
+            final CheckBoxPreference chkPref = (CheckBoxPreference) preference;
+            boxValue = chkPref.isChecked() ? "1" : "0";
+            Utils.writeValue(FAST_CHARGE_FILE, boxValue);
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            sharedPrefs.edit().putBoolean(DeviceSettings.KEY_FAST_CHARGE, chkPref.isChecked()).apply();
         }
 
         return true;
@@ -90,6 +105,11 @@ public class GeneralFragmentActivity extends PreferenceFragment {
         if (isSupported(TOUCHKEY_NOTIFICATION_FILE)) {
             String sDefaultValue = Utils.readOneLine(TOUCHKEY_NOTIFICATION_FILE);
             Utils.writeValue(TOUCHKEY_NOTIFICATION_FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_NOTIFICATION,
+                             PREF_ENABLED.equals(sDefaultValue)));
+        }
+        if (isSupported(FAST_CHARGE_FILE)) {
+            String sDefaultValue = Utils.readOneLine(FAST_CHARGE_FILE);
+            Utils.writeValue(FAST_CHARGE_FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_FAST_CHARGE,
                              PREF_ENABLED.equals(sDefaultValue)));
         }
     }
