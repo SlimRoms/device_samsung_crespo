@@ -23,19 +23,20 @@ touch.orientationAware = 1
 # Size
 # Based on empirical measurements, we estimate the size of the contact
 # using size = sqrt(area) * 43 + 0.
-touch.size.calibration = area
+touch.size.calibration = default
 touch.size.scale = 43
 touch.size.bias = 0
-touch.size.isSummed = 0
+touch.size.isSummed = 1
 
 # Pressure
 # Driver reports signal strength as pressure.
 #
 # A normal thumb touch typically registers about 80 signal strength
 # units although we don't expect these values to be accurate.
-touch.pressure.calibration = amplitude
-touch.pressure.scale = 0.0125
+touch.pressure.calibration = default
+touch.pressure.source = default
+touch.pressure.scale = 0.001
 
 # Orientation
-touch.orientation.calibration = none
+touch.orientation.calibration = default
 
