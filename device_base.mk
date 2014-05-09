@@ -64,10 +64,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false \
     ro.kernel.android.checkjni=0
 
-# Low RAM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.low_ram=true
-
 # Prebuilt kl and kcm keymaps
 PRODUCT_COPY_FILES += \
     device/samsung/crespo/input/s3c-keypad.kl:system/usr/keylayout/s3c-keypad.kl \
