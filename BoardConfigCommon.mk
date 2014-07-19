@@ -40,6 +40,9 @@ TARGET_BOOTLOADER_BOARD_NAME := herring
 
 TARGET_SEC_INTERNAL_STORAGE := false
 
+# External apps on SD
+TARGET_EXTERNAL_APPS = sdcard0
+
 # Enable NEON feature
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
